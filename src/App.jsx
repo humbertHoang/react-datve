@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="row">
-          <div className="col-8">
+          <div className="col-8 d-flex flex-column align-items-center">
             <BookingDisplay />
           </div>
           <div className="col-4 mt-4">

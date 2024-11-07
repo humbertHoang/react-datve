@@ -8,3 +8,105 @@
   min-block-size: 100vh;
   border-image: linear-gradient(hsl(0 0% 0% / 0.5), hsl(0 0% 0% / 0.7)) fill 1;
 }
+
+.ghe {
+  border: 3px solid orange;
+  width: 45px;
+  height: 35px;
+  margin-bottom: 1%;
+  border-radius: 5px;
+}
+
+.gheDuocChon {
+  border: 3px solid orange;
+  background-color: hsl(39, 100%, 50%);
+  color: #000;
+  cursor: no-drop !important;
+  border-radius: 5px;
+  width: 45px;
+  height: 35px;
+}
+
+.gheDangChon {
+  background: hsl(120, 79%, 68%);
+  border: 3px solid rgb(109, 238, 109);
+  color: #000;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 45px;
+  height: 35px;
+}
+
+.gheDangChon:hover {
+  background: hsl(120, 79%, 58%);
+}
+
+.seat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.seat-item {
+  display: block;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.seat-item button {
+  vertical-align: middle;
+  transition: background-color 0.5s ease;
+}
+
+table {
+  --bs-table-bg: none !important;
+  --bs-table-color: white !important;
+}
+
+.screen {
+  border-bottom: 50px solid rgb(255, 159, 95);
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  width: 100%;
+  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
+  font-size: 25px;
+  color: #fff;
+}
+
+.rowNumber {
+  /* font-size: 25px; */
+  width: 45px;
+  height: 35px;
+  background: none;
+  border: none;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  font-size: 30px;
+  color: yellow;
+}
+
+.firstChar {
+  color: yellow !important;
+}
+
+#showTable > tbody > tr > td:first-of-type {
+  color: yellow !important;
+}
+
+.table-responsive {
+  margin-right: 2rem !important;
+}
+
+#screenTable th[scope="col"] {
+  text-align: center;
+}
+
+#screenTable th[scope="row"],
+#screenTable th[scope="col"] {
+  color: yellow;
+}
+
+#screenTable button {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
