@@ -1,0 +1,10 @@
+.App {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.5;
+  color: white;
+  background-image: url("./assets/bgmovie.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-block-size: 100vh;
+  border-image: linear-gradient(hsl(0 0% 0% / 0.5), hsl(0 0% 0% / 0.7)) fill 1;
+}
