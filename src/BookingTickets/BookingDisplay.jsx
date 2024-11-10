@@ -1,4 +1,36 @@
-const BookingDisplay = () => {
+import { useDispatch } from "react-redux";
+import { addSeat } from "../store/actions/bookingActions";
+const BookingDisplay = (props) => {
+  const dispatch = useDispatch();
+  const bookingSeats = props.bookingSeats;
+  const addSeatHandler = (seat) => {
+    if (!seat.daDat && !bookingSeats.some((s) => s.soGhe === seat.soGhe))
+      return dispatch(addSeat(seat));
+  };
+  const { danhSachGhe } = props;
+  const h = danhSachGhe.map(({ hang }) => hang);
+  const dsg = danhSachGhe.map(({ danhSachGhe }) => danhSachGhe);
+  const renderGhe = () => {
+    return h.map((hang, index) => (
+      <tr key={`tr-${index}`}>
+        <th scope="row" key={`th-${index}`}>
+          {hang}
+        </th>
+        {dsg[index].map((obj, i) => (
+          <td key={`td-${i}`}>
+            <button
+              value={obj.soGhe}
+              className={obj.daDat ? "gheDuocChon" : "ghe"}
+              onClick={() => {
+                addSeatHandler(obj);
+              }}>
+              {i + 1}
+            </button>
+          </td>
+        ))}
+      </tr>
+    ));
+  };
   return (
     <>
       <h3 className="text-uppercase text-center text-warning fw-bolder">
@@ -25,113 +57,7 @@ const BookingDisplay = () => {
               <th scope="col">12</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">A</th>
-              <td>
-                <button className="ghe">1</button>
-              </td>
-              <td>
-                <button className="ghe">2</button>
-              </td>
-              <td>
-                <button className="ghe">3</button>
-              </td>
-              <td>
-                <button className="ghe">4</button>
-              </td>
-              <td>
-                <button className="ghe">5</button>
-              </td>
-              <td>
-                <button className="ghe">6</button>
-              </td>
-              <td>
-                <button className="ghe">7</button>
-              </td>
-              <td>
-                <button className="ghe">8</button>
-              </td>
-              <td>
-                <button className="ghe">9</button>
-              </td>
-              <td>
-                <button className="ghe">10</button>
-              </td>
-              <td>
-                <button className="ghe">11</button>
-              </td>
-              <td>
-                <button className="ghe">12</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">B</th>
-              <td>
-                <button className="ghe">1</button>
-              </td>
-              <td>
-                <button className="ghe">2</button>
-              </td>
-              <td>
-                <button className="ghe">3</button>
-              </td>
-              <td>
-                <button className="ghe">4</button>
-              </td>
-              <td>
-                <button className="ghe">5</button>
-              </td>
-              <td>
-                <button className="ghe">6</button>
-              </td>
-              <td>
-                <button className="ghe">7</button>
-              </td>
-              <td>
-                <button className="ghe">8</button>
-              </td>
-              <td>
-                <button className="ghe">9</button>
-              </td>
-              <td>
-                <button className="ghe">10</button>
-              </td>
-              <td>
-                <button className="ghe">11</button>
-              </td>
-              <td>
-                <button className="ghe">12</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">C</th>
-            </tr>
-            <tr>
-              <th scope="row">D</th>
-            </tr>
-            <tr>
-              <th scope="row">E</th>
-            </tr>
-            <tr>
-              <th scope="row">F</th>
-            </tr>
-            <tr>
-              <th scope="row">G</th>
-            </tr>
-            <tr>
-              <th scope="row">H</th>
-            </tr>
-            <tr>
-              <th scope="row">I</th>
-            </tr>
-            <tr>
-              <th scope="row">J</th>
-            </tr>
-            <tr>
-              <th scope="row">K</th>
-            </tr>
-          </tbody>
+          <tbody>{renderGhe()}</tbody>
         </table>
       </div>
     </>

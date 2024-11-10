@@ -1,4 +1,29 @@
-const BookingTable = () => {
+import { useDispatch } from "react-redux";
+import { deleteSeat } from "../store/actions/bookingActions";
+const BookingTable = (props) => {
+  const dispatch = useDispatch();
+  const bookingSeats = props.bookingSeats;
+  const deleteSeatHandler = (seat) => {
+    dispatch(deleteSeat(seat));
+  };
+  const bookingTable = bookingSeats.map((seat, index) => (
+    <tr key={index}>
+      <th scope="row" className="firstChar">
+        {seat.soGhe}
+      </th>
+      <td>{seat.gia.toLocaleString()}</td>
+      <td>
+        <button
+          className="btn btn-sm"
+          onClick={() => {
+            deleteSeatHandler(seat.soGhe);
+          }}>
+          ❌
+        </button>
+      </td>
+    </tr>
+  ));
+  const totalPrice = bookingSeats.reduce((total, seat) => total + seat.gia, 0);
   return (
     <>
       <h3 className="text-uppercase text-center text-white fw-bold">
@@ -24,36 +49,10 @@ const BookingTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row" className="firstChar">
-              A1
-            </th>
-            <td>Mark</td>
-            <td>
-              <button className="btn btn-sm">❌</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row" className="firstChar">
-              A2
-            </th>
-            <td>Jacob</td>
-            <td>
-              <button className="btn btn-sm">❌</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row" className="firstChar">
-              A3
-            </th>
-            <td>Larry the Bird</td>
-            <td>
-              <button className="btn btn-sm">❌</button>
-            </td>
-          </tr>
+          {bookingTable}
           <tr>
             <th scope="row">Tổng tiền</th>
-            <td>500.000</td>
+            <td>{totalPrice.toLocaleString()}</td>
             <td></td>
           </tr>
         </tbody>
